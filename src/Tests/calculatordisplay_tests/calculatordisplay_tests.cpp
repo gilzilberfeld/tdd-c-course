@@ -1,27 +1,24 @@
-/*
- * calculatordisplay_tests.cpp
- *
- *  Created on: 2 ????? 2018
- *      Author: Gil
- */
-//#include <string>
-//using namespace std;
-//#include "gtest/gtest.h"
-//#include "CalculatorDisplay/CalculatorDisplay.h"
-//#include "CalculatorDisplayTests.h"
-//
-//TEST_F(CalculatorDisplayTests, OnStart_Display_0)
-//{
-//	CalculatorDisplay _calc;
-//	string result = _calc.getDisplay();
-//	ASSERT_EQ("0", result);
-//}
-//
-//TEST_F(CalculatorDisplayTests, OnPress1_Display_1)
-//{
-//	CalculatorDisplay _calc;
-//	_calc.Press('1');
-//
-//	string result = _calc.getDisplay();
-//	ASSERT_EQ("1", result);
-//}
+#include "../../frameworks/yaffut.h"
+extern "C" void initCalculator();
+extern "C" void pressKey(char key);
+extern "C" char* getDisplayValue();
+
+TEST(displayShowsZeroAtStart)
+{
+	initCalculator();
+	char* result = getDisplayValue();
+	std::string display(result);
+	EQUAL("0", display);
+	free(result);
+}
+
+
+TEST(OnPress1_Display_1)
+{
+	initCalculator();
+	pressKey('1');
+	char* result = getDisplayValue();
+	std::string display(result);
+	EQUAL("1", display);
+	free(result);
+}

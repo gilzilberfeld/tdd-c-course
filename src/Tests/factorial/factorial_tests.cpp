@@ -1,10 +1,3 @@
-/*
- * factorialtests.cpp
- *
- *  Created on: 2 ????? 2018
- *      Author: Gil
- */
-
 #include "../../frameworks/yaffut.h"
 extern "C" int factorial(int n);
 
