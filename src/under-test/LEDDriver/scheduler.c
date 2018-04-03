@@ -1,23 +1,16 @@
-/*
- * CScheduler.c
- *
- *  Created on: 18 ????? 2016
- *      Author: Gil
- */
 #include "common.h"
-
 
 void initScheduler()
 {
 	initalizeTimerService();
-	initializeLEDs();
+	driverInitializeLEDs();
 }
 
 void turnLEDSonOnTime()
 {
 	if (itsTime())
 	{
-		turnAllOn();
+		driverTurnAllOn();
 	}
 }
 

@@ -1,19 +1,21 @@
 #include "common.h"
+#include <stdint.h>
 
 bool ledsAreOn = false;
+uint16_t address = 0;
 
-void initializeLEDs()
+void driverInitializeLEDs()
 {
 	ledsAreOn = false;
 }
 
-void turnAllOn()
+void driverTurnAllOn()
 {
 	ledsAreOn = true;
 }
 
 
-bool areAllLEDSon()
+bool driverAreAllLEDsOn()
 {
 	return ledsAreOn;
 }
