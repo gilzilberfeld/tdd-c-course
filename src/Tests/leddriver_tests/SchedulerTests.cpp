@@ -1,16 +1,18 @@
 #include "../../frameworks/yaffut.h"
 #include "../../frameworks/fff.h"
 
+
 DEFINE_FFF_GLOBALS;
 FAKE_VALUE_FUNC(int, getCurrentYearFromService);
+
+#include "SchedulerTestSuite.h"
 
 extern "C" void schedulerInit();
 extern "C" void schedulerTurnLEDSonOnTime();
 extern "C" bool driverAreAllLEDsOn();
 
-TEST(WhenYearIs2000_LightsAreOn)
+SUITE_TEST(SchedulerTestSuite, WhenYearIs2000_LightsAreOn)
 {
-	RESET_FAKE(getCurrentYearFromService);
 	getCurrentYearFromService_fake.return_val = 2000;
 
 	schedulerInit();
@@ -18,9 +20,8 @@ TEST(WhenYearIs2000_LightsAreOn)
 	CHECK(driverAreAllLEDsOn());
 }
 
-TEST(WhenYearIs2015_LightsAreOff)
+SUITE_TEST(SchedulerTestSuite, WhenYearIs2018_LightsAreOff)
 {
-	RESET_FAKE(getCurrentYearFromService);
 	getCurrentYearFromService_fake.return_val = 2018;
 
 	schedulerInit();
