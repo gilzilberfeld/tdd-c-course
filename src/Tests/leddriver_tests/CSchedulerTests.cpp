@@ -1,36 +1,29 @@
-///*
-// * CSchedulerTests.cpp
-// *
-// *  Created on: 18 ????? 2016
-// *      Author: Gil
-// */
-//#include <gtest\gtest.h>
-//#include "fff.h"
-//
-//DEFINE_FFF_GLOBALS;
-//FAKE_VALUE_FUNC(int, getCurrentYearFromService);
-//
-//#include "CSchedulerTests.h"
-//
-//extern "C" void initScheduler();
-//extern "C" void turnLEDSonOnTime();
-//extern "C" bool areAllLEDSon();
-//
-//
-//
-//TEST_F(CSchedulerTests,WhenYearIs2000_LightsAreOn)
-//{
-//	getCurrentYearFromService_fake.return_val = 2000;
-//	initScheduler();
-//	turnLEDSonOnTime();
-//	ASSERT_EQ(true, areAllLEDSon());
-//}
-//
-//TEST_F(CSchedulerTests,WhenYearIs2015_LightsAreOff)
-//{
-//	getCurrentYearFromService_fake.return_val = 2015;
-//
-//	initScheduler();
-//	turnLEDSonOnTime();
-//	ASSERT_EQ(false, areAllLEDSon());
-//}
+#include "../../frameworks/yaffut.h"
+#include "../../frameworks/fff.h"
+
+DEFINE_FFF_GLOBALS;
+FAKE_VALUE_FUNC(int, getCurrentYearFromService);
+
+extern "C" void schedulerInit();
+extern "C" void schedulerTurnLEDSonOnTime();
+extern "C" bool driverAreAllLEDsOn();
+
+TEST(WhenYearIs2000_LightsAreOn)
+{
+	RESET_FAKE(getCurrentYearFromService);
+	getCurrentYearFromService_fake.return_val = 2000;
+
+	schedulerInit();
+	schedulerTurnLEDSonOnTime();
+	CHECK(driverAreAllLEDsOn());
+}
+
+TEST(WhenYearIs2015_LightsAreOff)
+{
+	RESET_FAKE(getCurrentYearFromService);
+	getCurrentYearFromService_fake.return_val = 2018;
+
+	schedulerInit();
+	schedulerTurnLEDSonOnTime();
+	CHECK(!driverAreAllLEDsOn());
+}

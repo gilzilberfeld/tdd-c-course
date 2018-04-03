@@ -1,12 +1,12 @@
 #include "common.h"
 
-void initScheduler()
+void schedulerInit()
 {
 	initalizeTimerService();
 	driverInitializeLEDs();
 }
 
-void turnLEDSonOnTime()
+void schedulerTurnLEDSonOnTime()
 {
 	if (itsTime())
 	{
@@ -16,13 +16,10 @@ void turnLEDSonOnTime()
 
 int itsTime()
 {
+	// the function is defined elsewhere and
+	// needs to be faked to be tested
 	if (getCurrentYearFromService() == 2000)
 		return true;
 	else
 		return false;
-}
-
-int getCurrentYearFromService()
-{
-	return 0;
 }
