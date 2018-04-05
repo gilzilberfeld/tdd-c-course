@@ -4,7 +4,7 @@
 bool isInitialized = false;
 int oneYear = 60*24*365;
 
-void initalizeTimerService()
+void initializeTimeService()
 {
 	isInitialized=true;
 }

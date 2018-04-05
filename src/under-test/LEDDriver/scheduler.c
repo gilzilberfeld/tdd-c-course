@@ -1,8 +1,11 @@
 #include "common.h"
 
+int getCurrentYearFromService();
+int (*getCurrentYearFromServicePtr)() = getCurrentYearFromService;
+
 void schedulerInit()
 {
-	initalizeTimerService();
+	initializeTimeService();
 	driverInitializeLEDs();
 }
 
@@ -18,8 +21,9 @@ int itsTime()
 {
 	// the function is defined elsewhere and
 	// needs to be faked to be tested
-	if (getCurrentYearFromService() == 2000)
+	if (getCurrentYearFromServicePtr() == 2000)
 		return true;
 	else
 		return false;
 }
+

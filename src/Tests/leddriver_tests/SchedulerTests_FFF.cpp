@@ -1,15 +1,11 @@
 #include "../../frameworks/yaffut.h"
 #include "../../frameworks/fff.h"
 
-
 DEFINE_FFF_GLOBALS;
 FAKE_VALUE_FUNC(int, getCurrentYearFromService);
 
-#include "SchedulerTestSuite.h"
+#include "SchedulerTestSuite_FFF.h"
 
-extern "C" void schedulerInit();
-extern "C" void schedulerTurnLEDSonOnTime();
-extern "C" bool driverAreAllLEDsOn();
 
 SUITE_TEST(SchedulerTestSuite, WhenYearIs2000_LightsAreOn)
 {
@@ -28,3 +24,5 @@ SUITE_TEST(SchedulerTestSuite, WhenYearIs2018_LightsAreOff)
 	schedulerTurnLEDSonOnTime();
 	CHECK(!driverAreAllLEDsOn());
 }
+
+
